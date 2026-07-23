@@ -1,34 +1,42 @@
 using System;
 
-namespace ConversionBases
+namespace ConversionTemperaturas
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("=== MENÚ DE CONVERSIÓN ===");
-            Console.WriteLine("1. Decimal a Binario");
-            Console.WriteLine("2. Binario a Decimal");
-            Console.Write("Seleccione una opción (1 o 2): ");
-            int opcion = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("=== CONVERSIÓN DE TEMPERATURAS ===");
+            Console.Write("Ingrese la cantidad en grados centígrados (°C): ");
+            double celsius = Convert.ToDouble(Console.ReadLine());
 
-            if (opcion == 1)
+            Console.WriteLine("\n--- MENÚ DE OPCIONES ---");
+            Console.WriteLine("a. Fahrenheit");
+            Console.WriteLine("b. Celsius");
+            Console.WriteLine("c. Kelvin");
+            Console.Write("Seleccione una opción (a-c): ");
+
+            char opcion = Console.ReadKey().KeyChar;
+            Console.WriteLine(); 
+            double resultado;
+
+            switch (char.ToLower(opcion))
             {
-                Console.Write("\nIngrese un número decimal: ");
-                int numDecimal = Convert.ToInt32(Console.ReadLine());
-                string binario = Convert.ToString(numDecimal, 2);
-                Console.WriteLine($"El número en binario es: {binario}");
-            }
-            else if (opcion == 2)
-            {
-                Console.Write("\nIngrese un número binario: ");
-                string binarioTexto = Console.ReadLine();
-                int numDecimal = Convert.ToInt32(binarioTexto, 2);
-                Console.WriteLine($"El número en decimal es: {numDecimal}");
-            }
-            else
-            {
-                Console.WriteLine("\nOpción no válida.");
+                case 'a':
+                    resultado = (celsius * 9.0 / 5.0) + 32;
+                    Console.WriteLine($"{celsius} °C equivalen a {resultado:F2} °F.");
+                    break;
+                case 'b':
+                    resultado = celsius;
+                    Console.WriteLine($"{celsius} °C equivalen a {resultado:F2} °C.");
+                    break;
+                case 'c':
+                    resultado = celsius + 273.15;
+                    Console.WriteLine($"{celsius} °C equivalen a {resultado:F2} K.");
+                    break;
+                default:
+                    Console.WriteLine("Opción no válida. Intente nuevamente.");
+                    break;
             }
         }
     }
